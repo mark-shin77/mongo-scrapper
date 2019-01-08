@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/mark-shin77/mongo-scrapper/issues"
   },
-  "homepage": "https://github.com/mark-shin77/mongo-scrapper#readme"
+  "homepage": "https://github.com/mark-shin77/mongo-scrapper#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.4.2",
+    "morgan": "^1.9.1"
+  }
 }
