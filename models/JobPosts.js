@@ -12,8 +12,9 @@ var jobPostings = new Schema ({
         type: String,
         require: true,
     },
-    date: {
-        type: String
+    summary: {
+        type: String,
+        require: true
     },
     saved: {
         type: Boolean,

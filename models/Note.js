@@ -6,9 +6,6 @@ var noteSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: "JobPosting"
     },
-    date: {
-        type: String
-    },
     noteText: {
         type: String
     }
