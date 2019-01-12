@@ -1,1 +1,29 @@
-HANDLEBARS HOME
+{{!-- Nav bar --}}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <img class="navbar-logo" src="/assets/images/Indeed-Logo.png" alt="">
+    <a class="navbar-brand" href="/">Indeed Scraper</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline ml-auto">
+                    <button class="btn btn-outline-secondary scrape" type="button">Scrape New Jobs</button>
+                    <button class="btn btn-outline-secondary saved-jobs" type="button">Saved Jobs</button>
+                    <button class="btn btn-outline-secondary clear-jobs" type="button">Clear Jobs</button>
+            </form>
+    </div>
+</nav>
+{{!-- Heading --}}
+
+<header>
+    <div class="jumbotron text-center">
+        <div class="overlay"></div>
+        <div class="background-image"></div>
+        <div class="caption">
+            <h1>Mongo Scraper</h1>
+            <p>Indeed Web Developer Edition</p>
+        </div>
+    </div>
+</header>

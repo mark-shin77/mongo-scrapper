@@ -1,0 +1,67 @@
+/* Navbar Elements */
+.navbar-logo{
+    height: 35px;
+    margin-right: 1%;
+}
+
+.scrape{
+    margin-right: 20px;
+    padding: .375rem 3.75rem;
+}
+
+.saved-jobs{
+    padding: .375rem 3.75rem;
+    margin-right: 20px;
+}
+
+.clear-jobs{
+    padding: .375rem 3.75rem;
+}
+
+/* Header Elements */
+.jumbotron {
+    position: relative;
+    margin-top: 0.5px;
+    width: 100%;
+    height: 400px;
+    padding: 0;
+    font-family: "Cormorant SC";
+    /* box-shadow: 10px 5px 20px 2px lightslategrey; */
+}
+
+.jumbotron .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* background: linear-gradient(rgb(73, 89, 109), rgb(37, 37, 37)); */
+    opacity: 0.7;
+}
+
+.jumbotron .background-image {
+    height: 100%;
+    background-image: url("/assets/images/job-search-banner-2.jpg");
+    background-size: contain;
+}
+
+.jumbotron .caption {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+}
+
+.jumbotron .caption h1,
+.jumbotron .caption p {
+    color:black;
+}
+
+.jumbotron h1 {
+    font-size: 80px;
+    font-weight: 800;
+}
+
+.jumbotron p {
+    font-size: 30px;
+}
