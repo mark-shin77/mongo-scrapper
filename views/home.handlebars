@@ -8,15 +8,15 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline ml-auto">
-                    <button class="btn btn-outline-secondary scrape" type="button">Scrape New Jobs</button>
-                    <button class="btn btn-outline-secondary saved-jobs" type="button">Saved Jobs</button>
-                    <button class="btn btn-outline-secondary clear-jobs" type="button">Clear Jobs</button>
-            </form>
+        <form class="form-inline ml-auto">
+            <button class="btn btn-outline-secondary scrape" type="button">Scrape New Jobs</button>
+            <button class="btn btn-outline-secondary saved-jobs" type="button">Saved Jobs</button>
+            <button class="btn btn-outline-secondary clear-jobs" type="button">Clear Jobs</button>
+        </form>
     </div>
 </nav>
-{{!-- Heading --}}
 
+{{!-- Header --}}
 <header>
     <div class="jumbotron text-center">
         <div class="overlay"></div>
@@ -27,3 +27,16 @@
         </div>
     </div>
 </header>
+
+{{!-- Main Container --}}
+<div class="container">
+    {{#each}}
+    <div class="card">
+        <h5 class="card-header"></h5>
+        <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
+        </div>
+    </div>
+    {{/each}}
+</div>
