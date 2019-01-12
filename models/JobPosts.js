@@ -8,9 +8,16 @@ var jobPostings = new Schema ({
         require: true,
         unique: true
     },
+    link: {
+        type: String,
+        unique: true
+    },
     location: {
         type: String,
         require: true,
+    },
+    salary: {
+        type: String
     },
     summary: {
         type: String,

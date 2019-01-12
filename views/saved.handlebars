@@ -1,1 +1,68 @@
-SAVED HANDLEBARSS
+{{!-- Nav bar --}}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <img class="navbar-logo" src="/assets/images/Indeed-Logo.png" alt="">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form class="form-inline ml-auto">
+            <a href="/scrape" class="btn btn-outline-secondary scrape" type="button">Scrape New Jobs</a>
+            <a href="/saved" class="btn btn-outline-secondary saved-jobs" type="button">Saved Jobs</a>
+            <a href="/clear" class="btn btn-outline-secondary clear-jobs" type="button">Clear Jobs</a>
+        </form>
+    </div>
+</nav>
+
+{{!-- Header --}}
+<header>
+    <div class="jumbotron text-center">
+        <div class="overlay"></div>
+        <div class="background-image"></div>
+        <div class="caption">
+            <h1>Saved Jobs</h1>
+            <p>Indeed Web Developer Edition</p>
+        </div>
+    </div>
+</header>
+
+{{!-- Main Container --}}
+<div class="container">
+    {{#each job}}
+        {{#if this.saved}} 
+            <div class="card jobs">
+                    <h5 class="card-header"{{this._id}}>
+                <div class="row">
+                        <div class="col-lg-9 col-sm-12 title">
+                            <a target="_blank" href="https://indeed.com{{this.link}}">{{this.title}}</a>   -  {{this.location}}
+                        </div>
+                        <div class="col-lg-3 col-sm-12">
+                            <a target="_blank" href="https://indeed.com{{this.link}}" class="btn btn-outline-secondary">More info!</a>
+                            <button class="btn btn-outline-secondary notes" data-id={{this._id}}>Notes</button>
+                            <button class="btn btn-outline-secondary delete" data-id={{this._id}}>Delete</button>
+                        </div>
+                </div>
+                    </h5>
+                <div class="card-body">
+                    <h6 class="card-title">{{this.salary}}</h6>
+                    <p class="card-text">{{this.summary}}</p>
+                        {{!-- <h4>Error Occured! Please visit the indeed website for more details on this job opportunity!</h4> --}}
+                </div>
+            </div>
+        {{else}}
+            <div class="alert alert-warning text-center">
+                <h4>Uh Oh. Looks like we don't have any saved articles.</h4>
+            </div>
+        {{/if}}
+    <br>
+    {{/each}}
+</div>
+
+{{!-- Footer --}}
+<footer class="footer">
+    <div class="container">
+        <h4>Indeed Web Developer Mongo Scraper</h4>
+    </div>
+</footer>

@@ -37,7 +37,50 @@ mongoose.connect("mongodb://localhost/indeedjobposts", { useNewUrlParser: true }
 // Routes
 
 app.get("/", function (req, res) {
-  res.render("home");
+  db.Job.find({"saved": false}, function(err, data){
+    let hbsObject = {
+      job: data
+    }
+    res.render("home", hbsObject);
+  })
+})
+
+app.get("/saved", function (req, res) {
+  db.Job.find({"saved": true}, function(err, data){
+    let hbsObject = {
+      job: data
+    }
+    res.render("saved", hbsObject);
+  })
+})
+
+app.post("/jobs/save/:id", function(req, res){
+  db.Job.findOneAndUpdate({"_id": req.params.id }, { "saved": true }).exec(function(err, doc){
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(doc)
+    }
+  })
+})
+
+app.post("/jobs/delete/:id", function(req, res){
+  db.Job.findOneAndUpdate({"_id": req.params.id }, { "saved": false }).exec(function(err, doc){
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(doc)
+    }
+  })
+})
+
+app.get("/clear", function (req, res) {
+  db.Job.deleteMany({"saved": false}, function(err, data){
+    let hbsObject = {
+      job: data
+    }
+    res.redirect("/");
+  })
 })
 
 // A GET route for scraping the echoJS website
@@ -56,12 +99,28 @@ app.get("/scrape", function(req, res) {
       result.title = $(this)
         .children(".jobtitle")
         .text();
+      result.link = $(this)
+        .children(".jobtitle")
+        .attr("href");
       result.location = $(this)
         .children(".sjcl")
         .children(".location")
         .text();
+      result.salary = $(this)
+        .children(".paddedSummary")
+        .children("table")
+        .children("tbody")
+        .children("tr")
+        .children(".snip")
+        .children(".salarySnippet")
+        .text();
       result.summary = $(this)
         .children(".paddedSummary")
+        .children("table")
+        .children("tbody")
+        .children("tr")
+        .children(".snip")
+        .children(".summary")
         .text();
 
       // Create a new Job using the `result` object built from scraping
@@ -77,7 +136,7 @@ app.get("/scrape", function(req, res) {
     });
 
     // Send a message to the client
-    res.send("Scrape Complete");
+    res.redirect("/");
   });
 });
 
