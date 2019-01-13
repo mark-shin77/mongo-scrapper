@@ -29,16 +29,16 @@
 </header>
 
 {{!-- Main Container --}}
-<div class="container">
+<div class="container job-wrapper">
     {{#each job}}
-        {{#if this.summary}} 
+        {{#if this.summary}}
             <div class="card jobs">
                     <h5 class="card-header"{{this._id}}>
                 <div class="row">
-                        <div class="col-lg-8 col-sm-12 title">
+                        <div class="col-lg-9 col-sm-12 title">
                             <a target="_blank" href="https://indeed.com{{this.link}}">{{this.title}}</a>   -  {{this.location}}
                         </div>
-                        <div class="col-lg-4 col-sm-12">
+                        <div class="col-lg-3 col-sm-12">
                             <a target="_blank" href="https://indeed.com{{this.link}}" class="btn btn-outline-secondary">More info!</a>
                             <button class="btn btn-outline-secondary save" data-id={{this._id}}>Save Job</button>
                         </div>
@@ -50,7 +50,6 @@
                         {{!-- <h4>Error Occured! Please visit the indeed website for more details on this job opportunity!</h4> --}}
                 </div>
             </div>
-        {{else}}
         {{/if}}
     <br>
     {{/each}}
@@ -59,6 +58,6 @@
 {{!-- Footer --}}
 <footer class="footer">
     <div class="container">
-        <h4>Indeed Web Developer Mongo Scraper</h4>
+        <h5>Indeed Web Developer Mongo Scraper</h5>
     </div>
 </footer>

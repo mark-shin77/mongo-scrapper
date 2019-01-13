@@ -73,6 +73,14 @@ a:hover {
     color: blue;
 }
 
+.no-jobs-notification {
+    color: #856404;
+}
+.no-jobs-notification:hover {
+    color: black;
+}
+
+
 .title {
     margin-top: 6px;
 }
@@ -80,11 +88,11 @@ a:hover {
 /* Footer */
 .footer {
     position: static;
-    bottom: 0;
+    margin-top: 55px;
     width: 100%;
     padding: 1rem;
     color: white;
-    background-color: #212529;
+    background-color: #343a40;
     vertical-align: middle;
     text-align: center;
 }
