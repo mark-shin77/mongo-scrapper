@@ -26,35 +26,33 @@ module.exports = app => {
                 .children(".jobtitle")
                 .attr("href");
             result.location = $(this)
-            .children(".sjcl")
-            .children(".location")
-            .text();
+                .children(".sjcl")
+                .children(".location")
+                .text();
             result.salary = $(this)
-            .children(".paddedSummary")
-            .children("table")
-            .children("tbody")
-            .children("tr")
-            .children(".snip")
-            .children(".salarySnippet")
-            .text();
+                .children(".paddedSummary")
+                .children("table")
+                .children("tbody")
+                .children("tr")
+                .children(".snip")
+                .children(".salarySnippet")
+                .text();
             result.summary = $(this)
-            .children(".paddedSummary")
-            .children("table")
-            .children("tbody")
-            .children("tr")
-            .children(".snip")
-            .children(".summary")
-            .text();
+                .children(".paddedSummary")
+                .children("table")
+                .children("tbody")
+                .children("tr")
+                .children(".snip")
+                .children(".summary")
+                .text();
     
             // Create a new Job using the `result` object built from scraping
             db.Job.create(result)
-            .then(function(dbJob) {
-                // View the added result in the console
-                console.log(dbJob);
+                .then(function(dbJob) {
+                    console.log(dbJob);
             })
-            .catch(function(err) {
-                // If an error occurred, log it
-                console.log(err);
+                .catch(function(err) {
+                    console.log(err);
             });
         });
     
@@ -127,21 +125,18 @@ module.exports = app => {
         })
     })
     
-    // Route for getting all Jobs from the db
+    // Route to look at all notes in db
     app.get("/saved/notes", function(req, res) {
-        // Grab every document in the Jobs collection
         db.Note.find({})
         .then(function(dbNotes) {
-            // If we were able to successfully find Jobs, send them back to the client
             res.json(dbNotes);
         })
         .catch(function(err) {
-            // If an error occurred, send it to the client
             res.json(err);
         });
     });
     
-    // Route for saving/updating an Job's associated Note
+    // Route to add note to a specific job
     app.post("/jobs/:id", function(req, res) {
         // Create a new note and pass the req.body to the entry
         db.Note.create(req.body)
@@ -149,7 +144,6 @@ module.exports = app => {
                 return db.Job.findOneAndUpdate({ _id: req.params.id }, { $push: { note: dbNote._id }}, { new: true });
             })
             .catch(function(err) {
-                // If an error occurred, send it to the client
                 res.json(err);
             });
     });
