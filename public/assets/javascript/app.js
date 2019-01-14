@@ -56,8 +56,8 @@ $(document).on("click", ".btn.load-notes", function(){
       for (var x = 0; x < data.note.length; x ++ ){
         var noteContainer = $(
           "<div class='row'>" +
-            "<div class='new-notes col-10' data-id=''><p>"+ data.note[x].noteText +"</p></div>" +
-            "<button type='button' class='btn btn-danger delete-note'> X </button>" +
+            "<div class='new-notes col-10'><p>"+ data.note[x].noteText +"</p></div>" +
+            "<button type='button' class='btn btn-danger delete-note' data-id='" + data.note[x]._id + "'> X </button>" +
           "</div>"
         )
         $(".notes-container").append(noteContainer);
@@ -65,13 +65,19 @@ $(document).on("click", ".btn.load-notes", function(){
     } else {
       console.log("does not have a note");
     }
-  })
-})
+  });
+});
 
 // Delete note button
 $(document).on("click", ".btn.delete-note", function(){
-
-})
+  var thisId = $(this).attr("data-id");
+  $.ajax({
+    method: "POST",
+    url: "/saved/notes/" + thisId
+  }).then(function(){
+    location.reload();
+  });
+});
 
 // Alert showing user there are no saved jobs
 function noSavedJobs (){

@@ -142,9 +142,23 @@ module.exports = app => {
         db.Note.create(req.body)
             .then(function(dbNote) {
                 return db.Job.findOneAndUpdate({ _id: req.params.id }, { $push: { note: dbNote._id }}, { new: true });
+            }).then(function(dbJob) {
+                res.json(dbJob);
             })
             .catch(function(err) {
                 res.json(err);
             });
     });
+
+    // Route to Delete Note in DB
+    app.post("/saved/notes/:id", function(req, res){
+        db.Note.deleteOne({ _id: req.params.id })
+        .then(function(dbNote) {
+            res.json(dbNote);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+    })
+
 }
