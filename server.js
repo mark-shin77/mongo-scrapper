@@ -23,7 +23,9 @@ app.engine("handlebars", exphbs ({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/indeedjobposts", { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/indeedjobposts";
+
+mongoose.connect(MONGODB_URI);
 
 // Routes
 require("./routes/routes")(app);
