@@ -26,7 +26,11 @@ var jobPostings = new Schema ({
     saved: {
         type: Boolean,
         default: false
-    }
+    },
+    note: [{
+        type: Schema.Types.ObjectId,
+        ref: "Note"
+    }]
 })
 
 var Job = mongoose.model("JobPosting", jobPostings);

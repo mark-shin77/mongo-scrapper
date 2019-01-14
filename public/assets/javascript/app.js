@@ -34,12 +34,20 @@ $(document).on("click", ".btn.save-note", function(){
   var thisId = $(this).attr("data-id");
   $.ajax ({
     method: "POST",
-    url: "/jobs/" + thisId
+    url: "/jobs/" + thisId,
+    data: {
+      noteText: $("#user-text-input").val()
+    }
   }).then(function(){
-    $(".notes-container").append(newNoteContainer)
+    $(".notes-container").append(newNoteContainer);
     $("#user-text-input").val("");
   })
 });
+
+// Delete note button
+$(document).on("click", ".btn.delete-note", function(){
+
+})
 
 // Alert showing user there are no saved jobs
 function noSavedJobs (){

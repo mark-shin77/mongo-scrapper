@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-lg-4 col-sm-12">
                             <a target="_blank" href="https://indeed.com{{this.link}}" class="btn btn-outline-secondary">More info!</a>
-                            <button class="btn btn-outline-secondary notes" data-id={{this._id}} data-toggle="modal" data-target="#noteModal">Notes</button>
+                            <button class="btn btn-outline-secondary load-notes" data-id={{this._id}} data-toggle="modal" data-target="#noteModal">Notes</button>
                             <button class="btn btn-outline-secondary delete" data-id={{this._id}}>Delete</button>
                         </div>
                 </div>
@@ -48,7 +48,6 @@
                 <div class="card-body">
                     <h6 class="card-title">{{this.salary}}</h6>
                     <p class="card-text">{{this.summary}}</p>
-                        {{!-- <h4>Error Occured! Please visit the indeed website for more details on this job opportunity!</h4> --}}
                 </div>
             </div>
             <!-- Modal -->
@@ -63,6 +62,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="notes-container col-12">
+                        {{#if note}}
+                            {{#each note}}
+                                <div class='row'>
+                                    <div class='new-notes col-10'><p>{{noteText}}</p></div>
+                                    <button type='button' class='btn btn-danger delete-note'> X </button>
+                                </div>
+                            {{/each}}
+                        {{/if}}
                     </div>
                 </div>
                 <div class="modal-body">

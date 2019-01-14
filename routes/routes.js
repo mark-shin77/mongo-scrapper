@@ -19,12 +19,15 @@ module.exports = app => {
     })
     
     app.get("/saved", function (req, res) {
-        db.Job.find({"saved": true}, function(err, data){
-        let hbsObject = {
-            job: data
-        }
-        res.render("saved", hbsObject);
-        })
+        db.Job.find({"saved": true})
+            .populate("note")
+            .then(function(dbJobs){
+                dbJobs = {job: dbJobs}
+                res.render("saved", dbJobs);
+            })
+            .catch(function(err){
+                console.log(err);
+            })
     })
     
     app.post("/jobs/save/:id", function(req, res){
@@ -111,12 +114,12 @@ module.exports = app => {
     });
     
     // Route for getting all Jobs from the db
-    app.get("/jobs", function(req, res) {
+    app.get("/saved/notes", function(req, res) {
         // Grab every document in the Jobs collection
-        db.Job.find({})
-        .then(function(dbJob) {
+        db.Note.find({})
+        .then(function(dbNotes) {
             // If we were able to successfully find Jobs, send them back to the client
-            res.json(dbJob);
+            res.json(dbNotes);
         })
         .catch(function(err) {
             // If an error occurred, send it to the client
@@ -144,19 +147,12 @@ module.exports = app => {
     app.post("/jobs/:id", function(req, res) {
         // Create a new note and pass the req.body to the entry
         db.Note.create(req.body)
-        .then(function(dbNote) {
-            // If a Note was created successfully, find one Job with an `_id` equal to `req.params.id`. Update the Job to be associated with the new Note
-            // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
-            // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-            return db.Job.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
-        })
-        .then(function(dbJob) {
-            // If we were able to successfully update an Job, send it back to the client
-            res.json(dbJob);
-        })
-        .catch(function(err) {
-            // If an error occurred, send it to the client
-            res.json(err);
-        });
+            .then(function(dbNote) {
+                return db.Job.findOneAndUpdate({ _id: req.params.id }, { $push: { note: dbNote._id }}, { new: true });
+            })
+            .catch(function(err) {
+                // If an error occurred, send it to the client
+                res.json(err);
+            });
     });
 }
