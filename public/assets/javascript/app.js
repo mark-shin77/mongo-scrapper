@@ -27,7 +27,7 @@ $(document).on("click", ".btn.save-note", function(){
   var newNote = $(".user-note").val();
   var newNoteContainer = $(
     "<div class='row'>" +
-      "<div class='new-notes col-10'><p>"+ newNote +"</p></div>" +
+      "<div class='new-notes col-10' data-id=''><p>"+ newNote +"</p></div>" +
       "<button type='button' class='btn btn-danger delete-note'> X </button>" +
     "</div>"
   )
@@ -43,6 +43,30 @@ $(document).on("click", ".btn.save-note", function(){
     $("#user-text-input").val("");
   })
 });
+
+// Loading Notes 
+$(document).on("click", ".btn.load-notes", function(){
+  $(".notes-container").empty();
+  var thisId = $(this).attr("data-id");
+  $.ajax({
+    method: "GET",
+    url: "/jobs/" + thisId
+  }).then(function(data){
+    if (data.note.length > 0) {
+      for (var x = 0; x < data.note.length; x ++ ){
+        var noteContainer = $(
+          "<div class='row'>" +
+            "<div class='new-notes col-10' data-id=''><p>"+ data.note[x].noteText +"</p></div>" +
+            "<button type='button' class='btn btn-danger delete-note'> X </button>" +
+          "</div>"
+        )
+        $(".notes-container").append(noteContainer);
+      }
+    } else {
+      console.log("does not have a note");
+    }
+  })
+})
 
 // Delete note button
 $(document).on("click", ".btn.delete-note", function(){
