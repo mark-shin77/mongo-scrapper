@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form method="POST" action="/comment/'+id+'">
+        <div class="row gtr-uniform">
+            <div class="col-10 col-12-xsmall">
+                <input type="text" name="title" id="title" value="" placeholder="title" />
+            </div>
+            <div class="col-12 col-12-small">
+                <input type="text" name="body" id="body" value="" placeholder="comment" />
+            </div>
+            <div class="col-12">
+                <ul class="actions" style="display: flex;">
+                    <input type="submit" value="Post" class="primary" />
+                    <input type="reset" value="Reset" />
+                </ul>
+            </div>
+        </div>
+    </form>
+
+
+</body>
+
+</html>
