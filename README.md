@@ -1,4 +1,4 @@
-# mongo-scrapper
+# Mongo Scraper
 
 ## Demo
 Indeed Web Dev Scraper is deployed on Heroku! Click <a href="https://indeed-webdev-scraper.herokuapp.com/">here</a> to try it out!
