@@ -18,8 +18,8 @@ into the local database, users can save jobs which interest them and add notes t
 
 ## ScreenShot
 ### Home Page
-![Screen shot 1](/client/src/images/HomePage.png)
+![Screen shot 1](/public/assets/images/HomePage.png)
 ### Results
-![Screen shot 2](/client/src/images/Results.png)
+![Screen shot 2](/public/assets/images/Results.png)
 ### Saved
-![Screen shot 3](/client/src/images/SavedPage.png)
+![Screen shot 3](/public/assets/images/SavedPage.png)
